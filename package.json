@@ -4,7 +4,14 @@
   "description": "\"More practice with react/reduxxx\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart": "babel-node tools/scriptInitiation.js",
+    "start": "npm-run-all --parallel open:src lint:watch",
+    "open:src": "babel-node tools/srcServer.js",
+    "lint": "node_modules/.bin/esw webpack.config.* src tools",
+    "lint:watch": "npm run lint -- --watch",
+    "test": "mocha --reporter progress tools/testSpecs.js \"src/**/*.spec.js\"",
+    "test:watch": "npm run test -- --watch"
+
   },
   "repository": {
     "type": "git",
