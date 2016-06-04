@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import courses from './courseReducer';
+import videos from './videoReducer';
 
 const rootReducer = combineReducers({
-  courses //es6 short-hand property name
+  videos //es6 short-hand property name
 });
 
 export default rootReducer;

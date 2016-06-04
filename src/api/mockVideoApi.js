@@ -3,7 +3,7 @@ import delay from './delay';
 // This file mocks a web API by working with the hard-coded data below.
 // It uses setTimeout to simulate the delay of an AJAX call.
 // All calls return promises.
-const courses = [
+const videos = [
   {
     id: "epic-meal-time",
     title: "The Last Episode of Epic Meal Time!",
@@ -51,57 +51,57 @@ function replaceAll(str, find, replace) {
 }
 
 //This would be performed on the server in a real app. Just stubbing in.
-const generateId = (course) => {
-  return replaceAll(course.title, ' ', '-');
+const generateId = (video) => {
+  return replaceAll(video.title, ' ', '-');
 };
 
-class CourseApi {
-  static getAllCourses() {
+class VideoApi {
+  static getAllVideos() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(Object.assign([], courses));
+        resolve(Object.assign([], videos));
       }, delay);
     });
   }
 
-  static saveCourse(course) {
-    course = Object.assign({}, course); // to avoid manipulating object passed in.
+  static saveVideo(video) {
+    video = Object.assign({}, video); // to avoid manipulating object passed in.
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         // Simulate server-side validation
-        const minCourseTitleLength = 1;
-        if (course.title.length < minCourseTitleLength) {
-          reject(`Title must be at least ${minCourseTitleLength} characters.`);
+        const minVideoTitleLength = 1;
+        if (video.title.length < minVideoTitleLength) {
+          reject(`Title must be at least ${minVideoTitleLength} characters.`);
         }
 
-        if (course.id) {
-          const existingCourseIndex = courses.findIndex(a => a.id == course.id);
-          courses.splice(existingCourseIndex, 1, course);
+        if (video.id) {
+          const existingVideoIndex = videos.findIndex(a => a.id == video.id);
+          videos.splice(existingVideoIndex, 1, video);
         } else {
           //Just simulating creation here.
-          //The server would generate ids and watchHref's for new courses in a real app.
+          //The server would generate ids and watchHref's for new videos in a real app.
           //Cloning so copy returned is passed by value rather than by reference.
-          course.id = generateId(course);
-          course.watchHref = `http://www.youtube.com/${course.id}`;
-          courses.push(course);
+          video.id = generateId(video);
+          video.watchHref = `http://www.youtube.com/${video.id}`;
+          videos.push(video);
         }
 
-        resolve(course);
+        resolve(video);
       }, delay);
     });
   }
 
-  static deleteCourse(courseId) {
+  static deleteVideo(videoId) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const indexOfCourseToDelete = courses.findIndex(course => {
-          course.courseId == courseId;
+        const indexOfVideoToDelete = videos.findIndex(video => {
+          video.videoId == videoId;
         });
-        courses.splice(indexOfCourseToDelete, 1);
+        videos.splice(indexOfVideoToDelete, 1);
         resolve();
       }, delay);
     });
   }
 }
 
-export default CourseApi;
+export default VideoApi;

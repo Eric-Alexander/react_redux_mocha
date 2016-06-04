@@ -1,1 +1,3 @@
-export const CREATE_COURSE = 'CREATE_COURSE';
+export const CREATE_VIDEO = 'CREATE_VIDEO';
+
+export const LOAD_VIDEOS_SUCCESS = 'LOAD_VIDEOS_SUCCESS';
