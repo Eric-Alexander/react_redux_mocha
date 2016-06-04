@@ -4,11 +4,13 @@ import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
 
 class CoursePage extends React.Component{
+  //constructor necessary in es6 to initialState
   constructor(props, context){
     super(props, context);
     this.state = {
       course: { title: "" }
     };
+    //add all binds in constructor for clarity and perfomance
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onClickSave = this.onClickSave.bind(this);
   }
@@ -33,8 +35,6 @@ class CoursePage extends React.Component{
         <h3> Add a new course! </h3>
         <input type="text" onChange={this.onTitleChange} value={this.state.course.title} className="form-control" />
         <input type="submit" onClick={this.onClickSave} value="Save" className="btn btn-primary" />
-
-
       </div>
     );
   }
@@ -44,7 +44,7 @@ CoursePage.propTypes = {
   courses: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 };
-
+//Redux and connect functions
 function mapStateToProps(state, ownProps){
   return {
     courses: state.courses
