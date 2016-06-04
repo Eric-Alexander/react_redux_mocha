@@ -18,7 +18,7 @@ class CoursePage extends React.Component{
   }
 
   onClickSave(){
-    this.props.dispatch(courseActions.createCourse(this.state.course));
+    this.props.createCourse(this.state.course);
   }
   courseRow(course, idx) {
     return <div key={idx}>{course.title}</div>;
@@ -40,8 +40,8 @@ class CoursePage extends React.Component{
 }
 
 CoursePage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  courses: PropTypes.array.isRequired
+  courses: PropTypes.array.isRequired,
+  createCourse: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state, ownProps){
@@ -49,5 +49,11 @@ function mapStateToProps(state, ownProps){
     courses: state.courses
   };
 }
+function mapDispatchToProps(dispatch){
+  return{
+    //es6 able to omit ( ) around 'course' below if there is only a single parameter, in this case, course
+    createCourse: course => dispatch(courseActions.createCourse(course))
+  };
+}
 
-export default connect(mapStateToProps)(CoursePage);
+export default connect(mapStateToProps, mapDispatchToProps)(CoursePage);
