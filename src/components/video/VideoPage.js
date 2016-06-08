@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as videoActions from '../../actions/videoActions';
+import VideoList from './VideoList';
 
 class VideoPage extends React.Component{
   //constructor necessary in es6 to initialState
@@ -12,10 +13,11 @@ class VideoPage extends React.Component{
     return <div key={idx}>{video.title}</div>;
   }
   render(){
+    const {videos} = this.props;
     return (
       <div className = "jumbotron">
-        <h1>List of videos</h1>
-        {this.props.videos.map(this.videoRow)}
+        <h1>Videos:</h1>
+        <VideoList videos={videos}/>
 
       </div>
     );
