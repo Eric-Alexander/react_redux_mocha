@@ -1,7 +1,8 @@
 import * as types from '../actions/actionTypes';
+import initialState from './initialState';
 
 
-export default function videoReducer(state = [], action) { //this reducer is for accessing a list of videos, since there are none yet in the DB we start the state as an empty array of videos
+export default function videoReducer(state = initialState.videos, action) { //this reducer is for accessing a list of videos, since there are none yet in the DB we start the state as an empty array of videos
   switch(action.type){
     case types.LOAD_VIDEOS_SUCCESS:
       return action.videos;

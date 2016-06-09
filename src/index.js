@@ -5,16 +5,18 @@ import { Router, browserHistory } from 'react-router'; //browserHistory provides
 import { Provider } from 'react-redux';
 import routes from './routes';
 import {loadVideos} from './actions/videoActions';
+import {loadAuthors} from './actions/authorActions';
 import './styles/styles.css'; //cool Webpack Feature...can import CSS styles
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
 store.dispatch(loadVideos());
+store.dispatch(loadAuthors());
 
 render (
   <Provider store={store}>
-  <Router history = {browserHistory} routes = {routes} />
+    <Router history = {browserHistory} routes = {routes} />
   </Provider>,
   document.getElementById('app')
 );
