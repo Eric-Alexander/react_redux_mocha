@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 import VideoApi from '../api/mockVideoApi';
-
+import {ajaxCallStart, ajaxCallError} from './ajaxActions';
 
 //action creators
 export function loadVideosSuccess(videos){
@@ -16,6 +16,7 @@ export function updateVideoSuccess(video){
 //this is the thunk - it always returns an action that accepts a dispatch!!
 export function loadVideos() {
   return dispatch => {
+    dispatch(ajaxCallStart());
     return VideoApi.getAllVideos().then(videos => {
       dispatch(loadVideosSuccess(videos));
     }).catch(error => {
@@ -27,10 +28,12 @@ export function loadVideos() {
 
 export function saveVideo(video){
   return function(dispatch, getState) { //optional 2nd parameter getState here!
+    dispatch(ajaxCallStart());
     return VideoApi.saveVideo(video).then(videoSaved => {
       video.id ? dispatch(updateVideoSuccess(videoSaved)) :
         dispatch(createVideoSuccess(videoSaved));
     }).catch(error => {
+      dispatch(ajaxCallError(error));
       throw(error);
     });
   };

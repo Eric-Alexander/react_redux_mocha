@@ -1,4 +1,5 @@
 export default {
   authors: [],
-  videos: []
-}
+  videos: [],
+  currentAjaxCalls: 0
+};

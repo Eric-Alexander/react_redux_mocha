@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 import AuthorApi from '../api/mockAuthorApi';
-
+import {ajaxCallStart} from './ajaxActions';
 //action creator
 export function loadAuthorsSuccess(authors){
   return { type: types.LOAD_AUTHORS_SUCCESS, authors }; //note in es6 if params have same name 'course: course' can just become 'course'
@@ -8,6 +8,7 @@ export function loadAuthorsSuccess(authors){
 //this is the thunk - it always returns an action that accepts a dispatch!!
 export function loadAuthors() {
   return dispatch => {
+    dispatch(ajaxCallStart());
     return AuthorApi.getAllAuthors().then(authors => {
       dispatch(loadAuthorsSuccess(authors));
     }).catch(error => {

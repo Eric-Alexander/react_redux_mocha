@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-const VideoForm = ({video, onSave, onChange, allAuthors, loading, errors}) => {
+const VideoForm = ({video, onSave, onChange, allAuthors, saving, errors}) => {
   return(
     <form>
       <h1>Manage Video</h1>
@@ -34,8 +34,8 @@ const VideoForm = ({video, onSave, onChange, allAuthors, loading, errors}) => {
         error={errors.length}/>
       <input
         type="submit"
-        disabled={loading}
-        value={loading ? 'Saving...' : 'Save'}
+        disabled={saving}
+        value={saving ? 'Saving...' : 'Save'}
         className="btn btn-primary"
         onClick={onSave}/>
     </form>
@@ -43,12 +43,12 @@ const VideoForm = ({video, onSave, onChange, allAuthors, loading, errors}) => {
 };
 
 VideoForm.propTypes = {
-  video: React.PropTypes.object.isRequired,
-  onSave: React.PropTypes.func.isRequired,
-  onChange: React.PropTypes.func.isRequired,
-  allAuthors: React.PropTypes.array,
-  loading: React.PropTypes.bool,
-  errors: React.PropTypes.object
+  video: PropTypes.object.isRequired,
+  onSave: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  allAuthors: PropTypes.array,
+  saving: PropTypes.bool,
+  errors: PropTypes.object
 };
 
 export default VideoForm;

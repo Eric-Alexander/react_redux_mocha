@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as videoActions from '../../actions/videoActions';
 import VideoForm from './VideoForm';
+import toastr from 'toastr';
 
 class ManageVideoPage extends React.Component{
   constructor(props, context){
@@ -10,7 +11,8 @@ class ManageVideoPage extends React.Component{
 
     this.state = {
       video: Object.assign({}, props.video),
-      errors: {}
+      errors: {},
+      saving: false
     };
     this.updateVideoState = this.updateVideoState.bind(this);
     this.saveVideo = this.saveVideo.bind(this);
@@ -28,7 +30,18 @@ class ManageVideoPage extends React.Component{
   }
   saveVideo(event){
     event.preventDefault();
-    this.props.actions.saveVideo(this.state.video);
+    this.setState({saving: true});
+    this.props.actions.saveVideo(this.state.video)
+      .then(() => this.redirect())
+      .catch(error => {
+        toastr.error(error);
+        this.setState({saving: false});
+      });
+
+  }
+  redirect(){
+    this.setState({saving: false});
+    toastr.success("Course saved!");
     this.context.router.push('/videos');
   }
   render(){
@@ -39,6 +52,7 @@ class ManageVideoPage extends React.Component{
           onSave={this.saveVideo}
           video={this.state.video}
           errors={this.state.errors}
+          saving={this.state.saving}
            />
     );
   }
