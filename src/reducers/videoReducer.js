@@ -6,6 +6,18 @@ export default function videoReducer(state = initialState.videos, action) { //th
   switch(action.type){
     case types.LOAD_VIDEOS_SUCCESS:
       return action.videos;
+
+    case types.CREATE_VIDEO_SUCCESS:
+      return [
+        ...state,
+        Object.assign({}, action.video)
+      ];
+      
+    case types.UPDATE_VIDEO_SUCCESS:
+      return [
+        ...state.filter(video => video.id !== action.video.id),
+        Object.assign({}, action.video)
+      ];
     default: //everytime there is a SWITCH statement create a DEFAULT to return state
       return state;
   }

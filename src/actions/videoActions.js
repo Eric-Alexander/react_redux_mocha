@@ -26,9 +26,9 @@ export function loadVideos() {
 
 export function saveVideo(video){
   return function(dispatch, getState){
-    return VideoApi.saveVideo(video).then(video => {
-      video.id ? dispatch(updateVideoSuccess(video)) :
-        dispatch(createVideoSuccess(video));
+    return VideoApi.saveVideo(video).then(savedVideo => {
+      video.id ? dispatch(updateVideoSuccess(savedVideo)) :
+        dispatch(createVideoSuccess(savedVideo));
     }).catch(error => {
       throw(error);
     });

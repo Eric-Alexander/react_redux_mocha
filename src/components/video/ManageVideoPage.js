@@ -13,6 +13,7 @@ class ManageVideoPage extends React.Component{
       errors: {}
     };
     this.updateVideoState = this.updateVideoState.bind(this);
+    this.saveVideo = this.saveVideo.bind(this);
   }
   updateVideoState(event){
     const field = event.target.name;
@@ -20,11 +21,17 @@ class ManageVideoPage extends React.Component{
     video[field] = event.target.value;
     return this.setState({video: video});
   }
+  saveVideo(event){
+    event.preventDefault();
+    this.props.actions.saveVideo(this.state.video);
+    this.context.router.push('/videos');
+  }
   render(){
     return (
         <VideoForm
           allAuthors={this.props.authors}
           onChange={this.updateVideoState}
+          onSave={this.saveVideo}
           video={this.state.video}
           errors={this.state.errors}
            />
@@ -34,7 +41,12 @@ class ManageVideoPage extends React.Component{
 
 ManageVideoPage.propTypes = {
   video: PropTypes.object.isRequired,
-  authors: PropTypes.array
+  authors: PropTypes.array.isRequired,
+  actions: PropTypes.object
+};
+
+ManageVideoPage.contextTypes = {
+  router: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps){
@@ -50,6 +62,7 @@ function mapStateToProps(state, ownProps){
     authors: authorsFormattedForDropdown
   };
 }
+
 function mapDispatchToProps(dispatch){
   return{
     actions: bindActionCreators(videoActions, dispatch)

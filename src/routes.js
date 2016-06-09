@@ -10,10 +10,10 @@ import ManageVideoPage from './components/video/ManageVideoPage';
 export default (
   <Route path = "/" component={App}>
     <IndexRoute component={HomePage} />
-
+    <Route path = "videos" component={VideoPage} />
     <Route path = "video" component={ManageVideoPage} />
     <Route path = "video/:id" component={ManageVideoPage} />
-    <Route path = "videos" component={VideoPage} />
+
     <Route path = "about" component={AboutPage} />
   </Route>
 );
