@@ -15,6 +15,11 @@ class ManageVideoPage extends React.Component{
     this.updateVideoState = this.updateVideoState.bind(this);
     this.saveVideo = this.saveVideo.bind(this);
   }
+  componentWillReceiveProps(nextProps){
+    if (this.props.video.id != nextProps.video.id){
+      this.setState({video: Object.assign({}, nextProps.video)});
+    }
+  }
   updateVideoState(event){
     const field = event.target.name;
     let video = this.state.video;
@@ -42,15 +47,26 @@ class ManageVideoPage extends React.Component{
 ManageVideoPage.propTypes = {
   video: PropTypes.object.isRequired,
   authors: PropTypes.array.isRequired,
-  actions: PropTypes.object
+  actions: PropTypes.object.isRequired
 };
 
 ManageVideoPage.contextTypes = {
-  router: PropTypes.object.isRequired
+  router: PropTypes.object
 };
 
+function getVideoById(videos, id){
+  const video = videos.filter(video => video.id == id);
+  if (video) return video[0]; //Note: .filter returns an array so grab the first in the array!
+  return null;
+}
 function mapStateToProps(state, ownProps){
+  const videoId = ownProps.params.id; //params.id is direct grab from router path '/video/:id'
   let video = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
+
+  if (videoId && state.videos.length > 0){
+    video = getVideoById(state.videos, videoId);
+  }
+
   const authorsFormattedForDropdown = state.authors.map(author => {
     return {
       value: author.id,

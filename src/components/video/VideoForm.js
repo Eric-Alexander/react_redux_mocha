@@ -37,7 +37,7 @@ const VideoForm = ({video, onSave, onChange, allAuthors, loading, errors}) => {
         disabled={loading}
         value={loading ? 'Saving...' : 'Save'}
         className="btn btn-primary"
-        onCLick={onSave}/>
+        onClick={onSave}/>
     </form>
   );
 };
