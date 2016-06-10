@@ -5,7 +5,7 @@ import * as videoActions from '../../actions/videoActions';
 import VideoForm from './VideoForm';
 import toastr from 'toastr';
 
-class ManageVideoPage extends React.Component{
+export class ManageVideoPage extends React.Component{
   constructor(props, context){
     super(props, context);
 
@@ -28,8 +28,21 @@ class ManageVideoPage extends React.Component{
     video[field] = event.target.value;
     return this.setState({video: video});
   }
+  videoFormIsValid(){
+    let formIsValid = true;
+    let errors = {};
+    if (this.state.video.title.length < 4){
+      errors.title = 'Title must be at least 4 characters.';
+      formIsValid = false;
+    }
+    this.setState({errors: errors});
+    return formIsValid;
+  }
   saveVideo(event){
     event.preventDefault();
+    if (!this.videoFormIsValid()){
+      return;
+    }
     this.setState({saving: true});
     this.props.actions.saveVideo(this.state.video)
       .then(() => this.redirect())

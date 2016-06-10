@@ -69,7 +69,7 @@ class VideoApi {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         // Simulate server-side validation
-        const minVideoTitleLength = 1;
+        const minVideoTitleLength = 4;
         if (video.title.length < minVideoTitleLength) {
           reject(`Title must be at least ${minVideoTitleLength} characters.`);
         }
