@@ -1,3 +1,5 @@
+
+/*eslint-disable import/default  */
 import 'babel-polyfill'; //fills in all ES6 functionality
 import React from 'react';
 import { render } from 'react-dom';

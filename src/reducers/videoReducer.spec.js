@@ -30,7 +30,7 @@ describe('Video Reducer', () => {
     const untouchedVideo = newState.find(x => x.id == 'Foo');
 
     expect(updatedVideo.title).toEqual('Im Fubar now too');
-    expect(untouchedVideo.title).toEqual('Foo')
+    expect(untouchedVideo.title).toEqual('Foo');
     expect(newState.length).toEqual(3);
   });
 });
