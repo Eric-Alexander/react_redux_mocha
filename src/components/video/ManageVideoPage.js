@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as videoActions from '../../actions/videoActions';
 import VideoForm from './VideoForm';
 import toastr from 'toastr';
+import {authorsFormattedForDropdown} from '../../selectors/selectors';
 
 export class ManageVideoPage extends React.Component{
   constructor(props, context){
@@ -94,15 +95,9 @@ function mapStateToProps(state, ownProps){
     video = getVideoById(state.videos, videoId);
   }
 
-  const authorsFormattedForDropdown = state.authors.map(author => {
-    return {
-      value: author.id,
-      text: author.firstName + ' ' + author.lastName
-    };
-  });
   return {
     video: video,
-    authors: authorsFormattedForDropdown
+    authors: authorsFormattedForDropdown(state.authors)
   };
 }
 
