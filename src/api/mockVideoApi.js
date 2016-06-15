@@ -8,7 +8,7 @@ const videos = [
     id: "epic-meal-time",
     title: "The Last Episode of Epic Meal Time!",
     watchHref: "https://www.youtube.com/watch?v=0a33WTZK2zI",
-    authorId: "simore-butts",
+    userId: "simore-butts",
     length: "10:53",
     category: "Food"
   },
@@ -16,7 +16,7 @@ const videos = [
     id: "dhmb-pov",
     title: "Insane Urban DH Mountain Bike POV",
     watchHref: "https://www.youtube.com/watch?v=mFuSjk7jv_M",
-    authorId: "jon-jarboe",
+    userId: "jon-jarboe",
     length: "3:20",
     category: "Sports"
   },
@@ -24,7 +24,7 @@ const videos = [
     id: "run-the-jewels",
     title: "DJ Shadow: 'Nobody Speak' (Feat. Run the Jewels) [HD]",
     watchHref: "https://www.youtube.com/watch?v=lmBMYDfc0OI",
-    authorId: "jon-jarboe",
+    userId: "jon-jarboe",
     length: "2:52",
     category: "Music"
   },
@@ -32,7 +32,7 @@ const videos = [
     id: "lotr-explained",
     title: "The Lord of the Rings Mythology Explained (Part 1)",
     watchHref: "https://www.youtube.com/watch?v=YxgsxaFWWHQ",
-    authorId: "eric-goetschel",
+    userId: "eric-goetschel",
     length: "4:45",
     category: "Fantasy"
   },
@@ -40,7 +40,7 @@ const videos = [
     id: "gojira-silvera",
     title: "Gojira - Silvera [OFFICIAL VIDEO]",
     watchHref: "https://www.youtube.com/watch?v=iVvXB-Vwnco",
-    authorId: "eric-goetschel",
+    userId: "eric-goetschel",
     length: "3:34",
     category: "Music"
   }

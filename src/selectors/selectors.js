@@ -3,11 +3,11 @@
 
 
 
-export function authorsFormattedForDropdown(authors) {
-  return authors.map(author => {
+export function usersFormattedForDropdown(users) {
+  return users.map(user => {
     return {
-      value: author.id,
-      text: author.firstName + ' ' + author.lastName
+      value: user.id,
+      text: user.firstName + ' ' + user.lastName
     };
   });
 }

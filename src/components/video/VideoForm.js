@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-const VideoForm = ({video, onSave, onChange, allAuthors, saving, errors}) => {
+const VideoForm = ({video, onSave, onChange, allUsers, saving, errors}) => {
   return(
     <form>
       <h1>Manage Video</h1>
@@ -13,13 +13,13 @@ const VideoForm = ({video, onSave, onChange, allAuthors, saving, errors}) => {
         onChange={onChange}
         error={errors.title}/>
       <SelectInput
-        name="authorId"
-        label="Author"
-        value={video.authorId}
-        defaultOption="Select Author"
-        options={allAuthors}
+        name="userId"
+        label="User"
+        value={video.userId}
+        defaultOption="Select User"
+        options={allUsers}
         onChange={onChange}
-        error={errors.authorId}/>
+        error={errors.userId}/>
       <TextInput
         name="category"
         label="Category"
@@ -46,7 +46,7 @@ VideoForm.propTypes = {
   video: PropTypes.object.isRequired,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  allAuthors: PropTypes.array,
+  allUsers: PropTypes.array,
   saving: PropTypes.bool,
   errors: PropTypes.object
 };

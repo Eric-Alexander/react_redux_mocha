@@ -1,5 +1,5 @@
 export default {
-  authors: [],
+  users: [],
   videos: [],
   currentAjaxCalls: 0
 };

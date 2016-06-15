@@ -7,7 +7,7 @@ import { Router, browserHistory } from 'react-router'; //browserHistory provides
 import { Provider } from 'react-redux';
 import routes from './routes';
 import {loadVideos} from './actions/videoActions';
-import {loadAuthors} from './actions/authorActions';
+import {loadUsers} from './actions/userActions';
 import './styles/styles.css'; //cool Webpack Feature...can import CSS styles
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import configureStore from './store/configureStore';
@@ -15,7 +15,7 @@ import '../node_modules/toastr/build/toastr.min.css';
 
 const store = configureStore();
 store.dispatch(loadVideos());
-store.dispatch(loadAuthors());
+store.dispatch(loadUsers());
 
 render (
   <Provider store={store}>

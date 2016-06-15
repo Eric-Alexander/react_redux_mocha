@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as videoActions from '../../actions/videoActions';
 import VideoForm from './VideoForm';
 import toastr from 'toastr';
-import {authorsFormattedForDropdown} from '../../selectors/selectors';
+import {usersFormattedForDropdown} from '../../selectors/selectors';
 
 export class ManageVideoPage extends React.Component{
   constructor(props, context){
@@ -55,13 +55,13 @@ export class ManageVideoPage extends React.Component{
   }
   redirect(){
     this.setState({saving: false});
-    toastr.success("Course saved!");
+    toastr.success("Video saved!");
     this.context.router.push('/videos');
   }
   render(){
     return (
         <VideoForm
-          allAuthors={this.props.authors}
+          allUsers={this.props.users}
           onChange={this.updateVideoState}
           onSave={this.saveVideo}
           video={this.state.video}
@@ -74,7 +74,7 @@ export class ManageVideoPage extends React.Component{
 
 ManageVideoPage.propTypes = {
   video: PropTypes.object.isRequired,
-  authors: PropTypes.array.isRequired,
+  users: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 };
 
@@ -89,7 +89,7 @@ function getVideoById(videos, id){
 }
 function mapStateToProps(state, ownProps){
   const videoId = ownProps.params.id; //params.id is direct grab from router path '/video/:id'
-  let video = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
+  let video = {id: '', watchHref: '', title: '', userId: '', length: '', category: ''};
 
   if (videoId && state.videos.length > 0){
     video = getVideoById(state.videos, videoId);
@@ -97,7 +97,7 @@ function mapStateToProps(state, ownProps){
 
   return {
     video: video,
-    authors: authorsFormattedForDropdown(state.authors)
+    users: usersFormattedForDropdown(state.users)
   };
 }
 

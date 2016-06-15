@@ -8,7 +8,7 @@ const VideoList = ({videos}) => {
         <tr>
           <th>&nbsp;</th>
           <th>Title</th>
-          <th>Author</th>
+          <th>User</th>
           <th>Category</th>
           <th>Length</th>
         </tr>

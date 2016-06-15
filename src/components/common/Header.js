@@ -10,6 +10,9 @@ const Header = ({loading}) => {
       <Link to="/videos" activeClassName="active">Videos</Link>
       {" | "}
       <Link to="/about" activeClassName="active">About</Link>
+      {" | "}
+      <Link to="/users" activeClassName="active">Users</Link>
+      
       {loading && <DotTest interval={111} dots={22}/>}
     </nav>
   );
