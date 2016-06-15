@@ -2,9 +2,9 @@ import * as types from './actionTypes';
 import UserApi from '../api/mockUserApi';
 import {ajaxCallStart, ajaxCallError} from './ajaxActions';
 //action creator
-export function loadUsersSuccess(users){
-  return { type: types.LOAD_USERS_SUCCESS, users }; //note in es6 if params have same name 'course: course' can just become 'course'
-}
+export const loadUsersSuccess = (users) => ({
+type: types.LOAD_USERS_SUCCESS, users  //note in es6 if params have same name 'course: course' can just become 'course'
+});
 export const createUserSuccess = (user) => ({
   type: types.CREATE_USER_SUCCESS, user
 });

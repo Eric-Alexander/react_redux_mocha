@@ -36,6 +36,7 @@ class UserApi {
   }
 
   static saveUser(user) {
+    user = Object.assign({}, user);
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         // Simulate server-side validation
@@ -59,7 +60,7 @@ class UserApi {
           users.push(user);
         }
 
-        resolve(Object.assign({}, user));
+        resolve(user);
       }, delay);
     });
   }
