@@ -12,18 +12,32 @@ class ManageUserPage extends React.Component{
     this.state = {
       user: Object.assign({}, props.user),
       errors: {},
-      saving: false
+      saving: false,
+      dirty: false
     };
 
       this.updateUserState = this.updateUserState.bind(this);
       this.saveUser = this.saveUser.bind(this);
+      this.routerWillLeave = this.routerWillLeave.bind(this);
     }
+    componentDidMount() {
+      this.context.router.setRouteLeaveHook(this.props.route, this.routerWillLeave);
+    }
+
     componentWillReceiveProps(nextProps){
       if (this.props.user.id != nextProps.user.id){
         this.setState({user: Object.assign({}, nextProps.user)});
       }
     }
+    routerWillLeave(nextLocation) {
+      //need to fix this transition when save button clicked!
+      if(this.state.dirty && !this.state.saving){
+        return 'Leave without saving?';
+      }
+    }
+
     updateUserState(event){
+      this.setState({dirty: true});
       const field = event.target.name;
       let user = this.state.user;
       user[field] = event.target.value;
@@ -49,7 +63,7 @@ class ManageUserPage extends React.Component{
         .then(() => this.redirect())
         .catch(error => {
           toastr.error(error);
-          this.setState({saving: false});
+          this.setState({saving: false, dirty: false});
         });
 
     }
